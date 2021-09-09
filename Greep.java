@@ -32,17 +32,38 @@ public class Greep extends Creature
      */
     public void act()
     {
-        super.act();   // do not delete! leave as first statement in act().
-        if (carryingTomato()) {
-            if (atShip()) {
+         super.act();   // do not delete! leave as first statement in act().
+        if (atWorldEdge() == true)
+        {
+            turn(90);
+        }
+        
+        if (atWater() == true)
+        {
+            turn(90);
+        }
+        
+        if (carryingTomato()) 
+        {
+            if (atShip()) 
+            {
                 dropTomato();
             }
-            else {
-                turnHome();
+            else if (atWater() == true)
+            {
+                turn(90);
+                move(50);
+                turn(-90);
+            }
+            
+            else 
+            {
                 move();
+                turnHome();
             }
         }
-        else {
+        else 
+        {
             move();
             checkFood();
         }
@@ -67,7 +88,7 @@ public class Greep extends Creature
      */
     public static String getAuthorName()
     {
-        return "Anonymous";  // write your name here!
+        return "Andrew";  // write your name here!
     }
 
     /**
